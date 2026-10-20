@@ -122,6 +122,8 @@ main.wrap { padding-block: 3rem 2rem; }
 
 header.hero { display: flex; flex-direction: column; gap: 1rem; padding-bottom: 2.5rem; }
 .role { font: 500 0.95rem var(--font-mono); color: var(--mask); letter-spacing: 0.04em; }
+.status { display: inline-flex; align-items: center; gap: 0.5rem; font: 400 0.85rem var(--font-mono); color: var(--fg); }
+.status::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--mask); box-shadow: 0 0 0 3px color-mix(in srgb, var(--mask) 25%, transparent); }
 .lede { max-width: 38rem; color: var(--muted); font-size: 1.1rem; margin: 0; }
 .contact { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font: 400 0.9rem var(--font-mono); padding: 0; margin: 0.5rem 0 0; list-style: none; }
 .contact li { min-width: 0; overflow-wrap: anywhere; }
@@ -177,6 +179,7 @@ section { padding-top: 2.5rem; border-top: 1px solid var(--line); margin-top: 2.
 .edu { display: grid; gap: 1.25rem; }
 .edu div { display: grid; gap: 0.15rem; }
 .edu span { font: 400 0.8rem var(--font-mono); color: var(--muted); }
+.edu .thesis { margin: 0.4rem 0 0; font-size: 0.95rem; max-width: 40rem; }
 
 dl { margin: 0; display: grid; gap: 1.1rem; }
 dl > div { display: grid; grid-template-columns: 7rem minmax(0, 1fr); gap: 0.25rem 1.25rem; }
@@ -186,22 +189,12 @@ dd { margin: 0; }
 .tags li { background: var(--surface); border: 1px solid var(--line); padding: 0.1rem 0.6rem; border-radius: 3px; font-size: 0.9rem; }
 
 /* contact */
-.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 2rem; }
-.contact-info { display: grid; gap: 1rem; align-content: start; }
+.contact-info { display: grid; gap: 1rem; max-width: 38rem; }
 .contact-info p { margin: 0; color: var(--muted); }
 .email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font: 400 0.9rem var(--font-mono); }
-.email-row span { overflow-wrap: anywhere; user-select: all; }
+#email { overflow-wrap: anywhere; }
 .small-btn { font: 400 0.75rem var(--font-mono); padding: 0.2rem 0.6rem; border: 1px solid var(--line); border-radius: 3px; background: none; color: var(--fg); cursor: pointer; }
 .small-btn:hover { border-color: var(--mask); color: var(--mask); }
-form { display: grid; gap: 0.9rem; }
-label { display: grid; gap: 0.3rem; font: 500 0.78rem var(--font-mono); color: var(--muted); }
-input, textarea {
-  font: 400 0.95rem var(--font-body); color: var(--fg); background: var(--bg);
-  border: 1px solid var(--line); border-radius: 3px; padding: 0.6rem 0.7rem; width: 100%;
-}
-input:focus, textarea:focus { outline: 2px solid var(--mask); outline-offset: 0; border-color: transparent; }
-textarea { min-height: 7rem; resize: vertical; }
-.form-note { font: 400 0.75rem var(--font-mono); color: var(--muted); margin: 0; }
 
 .toast {
   position: fixed; left: 50%; bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%) translateY(150%);
@@ -222,7 +215,6 @@ textarea { min-height: 7rem; resize: vertical; }
 footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
 
 @media (max-width: 40rem) {
-  .contact-grid { grid-template-columns: 1fr; }
   .brand { display: none; }
   .nav ul { justify-content: flex-start; }
 }
@@ -235,13 +227,13 @@ footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var
   .toast, .to-top { transition: none; }
 }
 @media print {
-  .topbar, .theme-btn, .to-top, .toast, .filters, form, .actions, .skip { display: none !important; }
+  .topbar, .theme-btn, .to-top, .toast, .filters, .actions, .skip { display: none !important; }
   :root { --bg: #fff; --surface: #fff; --fg: #000; --muted: #333; --line: #bbb; --mask: #0d6b4d; --copper: #8a4a20; }
   body { font-size: 10.5pt; }
   section { break-inside: avoid-page; margin-top: 1.25rem; padding-top: 1.25rem; }
   .job, .project { break-inside: avoid; }
   .project[hidden] { display: flex !important; }
-  .contact-grid { grid-template-columns: 1fr; }
+  .small-btn { display: none; }
 }
 </style>
 </head>
@@ -271,14 +263,15 @@ footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var
   <header class="hero" id="top">
     <span class="role">Hardware &amp; PCB design engineer</span>
     <h1>Javad Nematli</h1>
-    <p class="lede">Electronics engineer with a Master of Electronics and ICT from KU Leuven. I design multi-layer PCBs, own hardware R&amp;D for custom units, and write the documentation that takes a design into production.</p>
+    <span class="status">Available immediately for full-time engineering roles in Belgium</span>
+    <p class="lede">Electronics engineer (MSc, KU Leuven) with hands-on experience in hardware R&amp;D, multi-layer PCB design, BOM management, test documentation and production support for industrial electronics.</p>
     <ul class="contact">
       <li>Ledegem, Belgium</li>
       <li><a href="https://www.linkedin.com/in/jnematli" rel="me">linkedin.com/in/jnematli</a></li>
       <li><a href="https://github.com/jnematli" rel="me">github.com/jnematli</a></li>
     </ul>
     <div class="actions">
-      <a class="btn solid" href="CV_Javad_Nematli.pdf">Download CV (PDF)</a>
+      <a class="btn solid" href="CV_Javad_Nematli_Harvard.pdf">Download CV (PDF)</a>
       <a class="btn" href="#contact">Get in touch</a>
     </div>
   </header>
@@ -315,32 +308,12 @@ footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var
       </article>
 
       <article class="job">
-        <span class="org">IMEC, Leuven</span>
-        <h3>Master's Thesis: Magnetic Localization of Ingestible Devices</h3>
-        <span class="when">Sep 2023 – Jun 2024</span>
-        <ul>
-          <li>Developed and optimised a Python position and orientation algorithm for magnetic localization.</li>
-          <li>Validated a new ingestible device prototype with improved localization accuracy.</li>
-        </ul>
-      </article>
-
-      <article class="job">
         <span class="org">Watt4ever, Beringen</span>
         <h3>PCB Design Engineer, part-time</h3>
         <span class="when">Nov 2023 – Dec 2023</span>
         <ul>
           <li>Reverse-engineered BMS-related PCBs to understand function and signal flow, and recreated the full schematics in Altium Designer.</li>
           <li>Redesigned the layout with better documentation, enabling reliable in-house manufacturing and easier future changes.</li>
-        </ul>
-      </article>
-
-      <article class="job">
-        <span class="org">Formula Electric Belgium, Leuven</span>
-        <h3>Volunteer Electronics Engineer, part-time</h3>
-        <span class="when">Oct 2022 – Nov 2022</span>
-        <ul>
-          <li>Built working knowledge of the SPI and CAN protocols used in automotive electronics.</li>
-          <li>Drew detailed schematics in Altium Designer, which the team used as the base of their PCB design.</li>
         </ul>
       </article>
     </div>
@@ -407,11 +380,27 @@ footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var
       <div>
         <h3>Master of Electronics and ICT</h3>
         <span>KU Leuven · Sep 2022 – Sep 2024 · Intelligent Electronics</span>
+        <p class="thesis"><strong>Master's thesis at imec</strong> (Sep 2023 – Jun 2024): Magnetic Localization of Ingestible Devices. Developed and optimised a Python position and orientation algorithm and validated a new ingestible device prototype with improved localization accuracy.</p>
       </div>
       <div>
         <h3>Bachelor of Engineering Technology</h3>
         <span>KU Leuven · Sep 2019 – Jun 2024 · Electronics and ICT</span>
       </div>
+    </div>
+  </section>
+
+  <section id="activities" aria-labelledby="act">
+    <h2 id="act">Leadership &amp; activities</h2>
+    <div class="trace">
+      <article class="job">
+        <span class="org">Formula Electric Belgium, Leuven</span>
+        <h3>Volunteer Electronics Engineer, part-time</h3>
+        <span class="when">Oct 2022 – Nov 2022</span>
+        <ul>
+          <li>Drew detailed electronic schematics in Altium Designer that the team used as the basis for its PCB design.</li>
+          <li>Built a thorough understanding of the SPI and CAN protocols used in automotive electronics.</li>
+        </ul>
+      </article>
     </div>
   </section>
 
@@ -421,8 +410,12 @@ footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var
       <div>
         <dt>Engineering</dt>
         <dd><ul class="tags">
-          <li>Hardware R&amp;D</li><li>Multi-layer PCB design</li><li>Electronics</li><li>Power electronics</li><li>BOM management</li><li>Testing &amp; validation</li><li>Production support</li><li>Technical documentation</li><li>Lean Six Sigma Yellow Belt</li>
+          <li>Hardware R&amp;D</li><li>Multi-layer PCB design</li><li>Electronics</li><li>Power electronics</li><li>BOM management</li><li>Testing &amp; validation</li><li>Production support</li><li>Technical documentation</li>
         </ul></dd>
+      </div>
+      <div>
+        <dt>Certifications</dt>
+        <dd><ul class="tags"><li>Lean Six Sigma Yellow Belt</li></ul></dd>
       </div>
       <div>
         <dt>Tools</dt>
@@ -441,31 +434,16 @@ footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var
 
   <section id="contact" aria-labelledby="ct">
     <h2 id="ct">Contact</h2>
-    <div class="contact-grid">
-      <div class="contact-info">
-        <h3>Let's talk hardware</h3>
-        <p>For hardware R&amp;D, PCB design or power electronics work, email is the fastest way to reach me.</p>
-        <div class="email-row">
-          <span id="email">javadnematli.work@gmail.com</span>
-          <button class="small-btn" type="button" id="copy-email">Copy</button>
-        </div>
-        <div class="email-row">
-          <a href="https://www.linkedin.com/in/jnematli">LinkedIn</a> · <a href="https://github.com/jnematli">GitHub</a>
-        </div>
+    <div class="contact-info">
+      <h3>Let's talk hardware</h3>
+      <p>For hardware R&amp;D, PCB design or power electronics work, email is the fastest way to reach me.</p>
+      <div class="email-row">
+        <a id="email" href="mailto:javadnematli.work@gmail.com">javadnematli.work@gmail.com</a>
+        <button class="small-btn" type="button" id="copy-email">Copy</button>
       </div>
-      <form id="contact-form" novalidate>
-        <label for="cf-name">Your name
-          <input id="cf-name" name="name" type="text" autocomplete="name" required>
-        </label>
-        <label for="cf-subject">Subject
-          <input id="cf-subject" name="subject" type="text" placeholder="Hardware engineer role at …" required>
-        </label>
-        <label for="cf-message">Message
-          <textarea id="cf-message" name="message" required></textarea>
-        </label>
-        <button class="btn solid" type="submit">Open in my email app</button>
-        <p class="form-note" id="form-note">This opens a pre-filled email in your own mail app. Nothing is stored on this site.</p>
-      </form>
+      <div class="email-row">
+        <a href="https://www.linkedin.com/in/jnematli">LinkedIn</a> · <a href="https://github.com/jnematli">GitHub</a>
+      </div>
     </div>
   </section>
 </main>
@@ -550,21 +528,6 @@ footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(email).then(function () { toast("Email copied"); }, fallback);
     } else { fallback(); }
-  });
-
-  /* contact form -> mailto */
-  document.getElementById("contact-form").addEventListener("submit", function (e) {
-    e.preventDefault();
-    var f = e.target;
-    var missing = ["name", "subject", "message"].filter(function (n) { return !f[n].value.trim(); });
-    if (missing.length) {
-      f[missing[0]].focus();
-      toast("Please fill in your " + missing[0]);
-      return;
-    }
-    var body = f.message.value.trim() + "\n\n— " + f.name.value.trim();
-    window.location.href = "mailto:" + email + "?subject=" + encodeURIComponent(f.subject.value.trim()) + "&body=" + encodeURIComponent(body);
-    document.getElementById("form-note").textContent = "Your mail app should open now. If it doesn't, email " + email + " directly.";
   });
 })();
 </script>
