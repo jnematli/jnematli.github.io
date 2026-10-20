@@ -4,12 +4,44 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Javad Nematli</title>
-<meta name="description" content="Javad Nematli, hardware and PCB design engineer based in Belgium. Experience, education, skills and contact details.">
+<meta name="description" content="Javad Nematli, hardware and PCB design engineer in Belgium. Multi-layer PCB design, hardware R&amp;D, power electronics. Experience, projects, skills and contact.">
+<meta name="author" content="Javad Nematli">
+<link rel="canonical" href="https://jnematli.github.io/">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Javad Nematli · Hardware & PCB Design Engineer">
+<meta property="og:description" content="Multi-layer PCB design, hardware R&D and power electronics. Based in Belgium.">
+<meta property="og:url" content="https://jnematli.github.io/">
+<meta property="profile:first_name" content="Javad">
+<meta property="profile:last_name" content="Nematli">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javad Nematli · Hardware & PCB Design Engineer">
+<meta name="twitter:description" content="Multi-layer PCB design, hardware R&D and power electronics. Based in Belgium.">
+<meta name="theme-color" content="#0d6b4d">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%230d6b4d'/%3E%3Cpath d='M7 16h8l4-6h6' stroke='%23e3a46d' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='7' cy='16' r='3' fill='%23e3a46d'/%3E%3Ccircle cx='25' cy='10' r='3' fill='%23e3a46d'/%3E%3Cpath d='M15 22h10' stroke='%23e3a46d' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Javad Nematli",
+  "jobTitle": "Hardware & PCB Design Engineer",
+  "url": "https://jnematli.github.io/",
+  "email": "mailto:javadnematli.work@gmail.com",
+  "address": { "@type": "PostalAddress", "addressLocality": "Ledegem", "addressCountry": "BE" },
+  "alumniOf": { "@type": "CollegeOrUniversity", "name": "KU Leuven" },
+  "knowsAbout": ["PCB design", "Hardware R&D", "Power electronics", "Altium Designer", "BOM management"],
+  "knowsLanguage": ["az", "en", "ru", "tr", "nl"],
+  "sameAs": ["https://www.linkedin.com/in/jnematli", "https://github.com/jnematli"]
+}
+</script>
+<script>
+  /* apply saved theme before paint to avoid a flash */
+  try { var t = localStorage.getItem("theme"); if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t); } catch (e) {}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* Layout: a single column "board" with a copper trace running down the left edge; each job is a solder pad on the trace. */
+/* Layout: a single column "board" with a copper trace running down the experience list; each job is a solder pad on the trace. */
 :root {
   --bg: #f1f4f1;
   --surface: #e6ebe6;
@@ -18,6 +50,7 @@
   --line: #c5cfc7;
   --mask: #0d6b4d;      /* solder-mask green, main accent */
   --copper: #b2602a;    /* copper, used for the trace and pads */
+  --header: rgba(241, 244, 241, 0.88);
   --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
   --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
@@ -26,46 +59,85 @@
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     --bg: #0f1713; --surface: #17211c; --fg: #e4ece6; --muted: #98a89f;
-    --line: #2a3a32; --mask: #4fc79a; --copper: #d9955a; color-scheme: dark;
+    --line: #2a3a32; --mask: #4fc79a; --copper: #d9955a; --header: rgba(15, 23, 19, 0.88); color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0f1713; --surface: #17211c; --fg: #e4ece6; --muted: #98a89f;
-  --line: #2a3a32; --mask: #4fc79a; --copper: #d9955a; color-scheme: dark;
+  --line: #2a3a32; --mask: #4fc79a; --copper: #d9955a; --header: rgba(15, 23, 19, 0.88); color-scheme: dark;
 }
 
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
 body {
   background: var(--bg);
   color: var(--fg);
   font: 400 1rem/1.65 var(--font-body);
   margin: 0;
-  padding-block: 3rem 4rem;
+}
+.wrap {
+  max-width: 46rem; margin-inline: auto;
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
 }
-.wrap { max-width: 46rem; margin-inline: auto; }
 a { color: var(--mask); text-underline-offset: 3px; }
 a:hover { color: var(--copper); }
-a:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; border-radius: 2px; }
+:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; border-radius: 2px; }
+.skip { position: absolute; left: 1rem; top: -3rem; background: var(--mask); color: var(--bg); padding: 0.5rem 1rem; z-index: 20; }
+.skip:focus { top: 1rem; }
 
 h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.15; }
 h1 { font-size: clamp(2.6rem, 9vw, 4.4rem); font-weight: 700; letter-spacing: -0.02em; }
 h2 { font-size: 0.8rem; font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 h3 { font-size: 1.2rem; font-weight: 500; }
 
-header { display: flex; flex-direction: column; gap: 1rem; padding-bottom: 2.5rem; }
+/* sticky nav */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  padding-top: env(safe-area-inset-top, 0px);
+  background: var(--header);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar .wrap { display: flex; align-items: center; gap: 1rem; min-height: 3.25rem; }
+.brand { font: 700 1rem var(--font-display); color: var(--fg); text-decoration: none; white-space: nowrap; }
+.nav { flex: 1; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.nav::-webkit-scrollbar { display: none; }
+.nav ul { display: flex; gap: 0.25rem; list-style: none; margin: 0; padding: 0; justify-content: flex-end; }
+.nav a {
+  display: block; padding: 0.35rem 0.6rem; border-radius: 3px; white-space: nowrap;
+  font: 400 0.8rem var(--font-mono); color: var(--muted); text-decoration: none;
+}
+.nav a:hover { color: var(--fg); }
+.nav a[aria-current="true"] { color: var(--mask); background: var(--surface); }
+.theme-btn {
+  flex: none; display: inline-flex; align-items: center; gap: 0.35rem;
+  background: none; border: 1px solid var(--line); border-radius: 3px; color: var(--fg);
+  font: 400 0.75rem var(--font-mono); padding: 0.35rem 0.55rem; cursor: pointer;
+}
+.theme-btn:hover { border-color: var(--mask); }
+.theme-btn svg { width: 14px; height: 14px; }
+
+main.wrap { padding-block: 3rem 2rem; }
+
+header.hero { display: flex; flex-direction: column; gap: 1rem; padding-bottom: 2.5rem; }
 .role { font: 500 0.95rem var(--font-mono); color: var(--mask); letter-spacing: 0.04em; }
 .lede { max-width: 38rem; color: var(--muted); font-size: 1.1rem; margin: 0; }
 .contact { display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font: 400 0.9rem var(--font-mono); padding: 0; margin: 0.5rem 0 0; list-style: none; }
 .contact li { min-width: 0; overflow-wrap: anywhere; }
-.cv-link {
-  align-self: flex-start; font: 500 0.9rem var(--font-mono); text-decoration: none;
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font: 500 0.9rem var(--font-mono); text-decoration: none; cursor: pointer;
   border: 1.5px solid var(--mask); padding: 0.5rem 1rem; border-radius: 3px;
+  background: none; color: var(--mask);
 }
-.cv-link:hover { background: var(--mask); color: var(--bg); }
+.btn:hover { background: var(--mask); color: var(--bg); }
+.btn.solid { background: var(--mask); color: var(--bg); }
+.btn.solid:hover { background: var(--copper); border-color: var(--copper); }
 
 section { padding-top: 2.5rem; border-top: 1px solid var(--line); margin-top: 2.5rem; display: grid; gap: 1.5rem; }
+.sec-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.75rem; }
 
 /* experience timeline */
 .trace { position: relative; display: grid; gap: 2rem; padding-left: 2rem; }
@@ -81,6 +153,27 @@ section { padding-top: 2.5rem; border-top: 1px solid var(--line); margin-top: 2.
 .job li::marker { color: var(--copper); }
 .client { color: var(--muted); font-size: 0.9rem; }
 
+/* projects */
+.filters { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.chip {
+  font: 400 0.78rem var(--font-mono); padding: 0.25rem 0.7rem; border-radius: 99px; cursor: pointer;
+  background: none; color: var(--muted); border: 1px solid var(--line);
+}
+.chip:hover { color: var(--fg); border-color: var(--muted); }
+.chip[aria-pressed="true"] { background: var(--mask); border-color: var(--mask); color: var(--bg); }
+.projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 20rem), 1fr)); gap: 1rem; }
+.project {
+  display: flex; flex-direction: column; gap: 0.6rem; min-width: 0;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 1.1rem 1.2rem;
+}
+.project .meta { display: flex; justify-content: space-between; gap: 0.5rem; font: 400 0.75rem var(--font-mono); color: var(--muted); }
+.project .kind { color: var(--copper); text-transform: uppercase; letter-spacing: 0.08em; }
+.project p { margin: 0; font-size: 0.95rem; }
+.project .stack { display: flex; flex-wrap: wrap; gap: 0.3rem 0.8rem; list-style: none; padding: 0; margin: 0; font: 400 0.75rem var(--font-mono); color: var(--muted); }
+.project .stack li::before { content: "▸ "; color: var(--copper); }
+.project .link { margin-top: auto; padding-top: 0.25rem; font: 500 0.82rem var(--font-mono); }
+.empty { color: var(--muted); font: 400 0.9rem var(--font-mono); }
+
 .edu { display: grid; gap: 1.25rem; }
 .edu div { display: grid; gap: 0.15rem; }
 .edu span { font: 400 0.8rem var(--font-mono); color: var(--muted); }
@@ -92,133 +185,388 @@ dd { margin: 0; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0; margin: 0; list-style: none; }
 .tags li { background: var(--surface); border: 1px solid var(--line); padding: 0.1rem 0.6rem; border-radius: 3px; font-size: 0.9rem; }
 
-footer { margin-top: 3rem; font: 400 0.8rem var(--font-mono); color: var(--muted); }
+/* contact */
+.contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 2rem; }
+.contact-info { display: grid; gap: 1rem; align-content: start; }
+.contact-info p { margin: 0; color: var(--muted); }
+.email-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font: 400 0.9rem var(--font-mono); }
+.email-row span { overflow-wrap: anywhere; user-select: all; }
+.small-btn { font: 400 0.75rem var(--font-mono); padding: 0.2rem 0.6rem; border: 1px solid var(--line); border-radius: 3px; background: none; color: var(--fg); cursor: pointer; }
+.small-btn:hover { border-color: var(--mask); color: var(--mask); }
+form { display: grid; gap: 0.9rem; }
+label { display: grid; gap: 0.3rem; font: 500 0.78rem var(--font-mono); color: var(--muted); }
+input, textarea {
+  font: 400 0.95rem var(--font-body); color: var(--fg); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 3px; padding: 0.6rem 0.7rem; width: 100%;
+}
+input:focus, textarea:focus { outline: 2px solid var(--mask); outline-offset: 0; border-color: transparent; }
+textarea { min-height: 7rem; resize: vertical; }
+.form-note { font: 400 0.75rem var(--font-mono); color: var(--muted); margin: 0; }
 
+.toast {
+  position: fixed; left: 50%; bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%) translateY(150%);
+  background: var(--fg); color: var(--bg); font: 400 0.85rem var(--font-mono); padding: 0.55rem 1rem; border-radius: 4px;
+  transition: transform 0.25s ease, opacity 0.25s ease; z-index: 30; pointer-events: none; opacity: 0;
+}
+.toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+.to-top {
+  position: fixed; z-index: 9;
+  right: calc(1rem + env(safe-area-inset-right, 0px)); bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+  width: 2.5rem; height: 2.5rem; border-radius: 50%; border: 1px solid var(--line);
+  background: var(--surface); color: var(--fg); cursor: pointer; font-size: 1rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.2s;
+}
+.to-top.show { opacity: 1; pointer-events: auto; }
+
+footer { padding-block: 2rem 3rem; font: 400 0.8rem var(--font-mono); color: var(--muted); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; }
+
+@media (max-width: 40rem) {
+  .contact-grid { grid-template-columns: 1fr; }
+  .brand { display: none; }
+  .nav ul { justify-content: flex-start; }
+}
 @media (max-width: 34rem) {
   dl > div { grid-template-columns: 1fr; }
-  body { padding-block: 2rem 3rem; }
+  main.wrap { padding-block: 2rem 1rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .toast, .to-top { transition: none; }
+}
+@media print {
+  .topbar, .theme-btn, .to-top, .toast, .filters, form, .actions, .skip { display: none !important; }
+  :root { --bg: #fff; --surface: #fff; --fg: #000; --muted: #333; --line: #bbb; --mask: #0d6b4d; --copper: #8a4a20; }
+  body { font-size: 10.5pt; }
+  section { break-inside: avoid-page; margin-top: 1.25rem; padding-top: 1.25rem; }
+  .job, .project { break-inside: avoid; }
+  .project[hidden] { display: flex !important; }
+  .contact-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <header>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top">J. Nematli</a>
+    <nav class="nav" aria-label="Sections">
+      <ul>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="theme-btn" id="theme-btn" type="button" aria-label="Change colour theme">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.5a6.5 6.5 0 0 1 0 13z" fill="currentColor"/></svg>
+      <span id="theme-label">Auto</span>
+    </button>
+  </div>
+</div>
+
+<main class="wrap" id="main">
+  <header class="hero" id="top">
     <span class="role">Hardware &amp; PCB design engineer</span>
     <h1>Javad Nematli</h1>
     <p class="lede">Electronics engineer with a Master of Electronics and ICT from KU Leuven. I design multi-layer PCBs, own hardware R&amp;D for custom units, and write the documentation that takes a design into production.</p>
     <ul class="contact">
       <li>Ledegem, Belgium</li>
-      <li><a href="mailto:javadnematli.work@gmail.com">javadnematli.work@gmail.com</a></li>
-      <li><a href="https://www.linkedin.com/in/jnematli">linkedin.com/in/jnematli</a></li>
-      <li><a href="https://github.com/jnematli">github.com/jnematli</a></li>
+      <li><a href="https://www.linkedin.com/in/jnematli" rel="me">linkedin.com/in/jnematli</a></li>
+      <li><a href="https://github.com/jnematli" rel="me">github.com/jnematli</a></li>
     </ul>
-    <a class="cv-link" href="CV_Javad_Nematli.pdf">Download CV (PDF)</a>
+    <div class="actions">
+      <a class="btn solid" href="CV_Javad_Nematli.pdf">Download CV (PDF)</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
   </header>
 
-  <main>
-    <section aria-labelledby="exp">
-      <h2 id="exp">Experience</h2>
-      <div class="trace">
-        <article class="job">
-          <span class="org">TMC Belgium · Sep 2024 – Oct 2026</span>
-          <h3>Engineering Consultant</h3>
-          <span class="client">Assignments at Televic Conference and Lynqo</span>
-        </article>
+  <section id="experience" aria-labelledby="exp">
+    <h2 id="exp">Experience</h2>
+    <div class="trace">
+      <article class="job">
+        <span class="org">TMC Belgium · Sep 2024 – Oct 2026</span>
+        <h3>Engineering Consultant</h3>
+        <span class="client">Assignments at Televic Conference and Lynqo</span>
+      </article>
 
-        <article class="job">
-          <span class="org">Televic Conference, Izegem · TMC Belgium assignment</span>
-          <h3>Customization Engineer, Hardware R&amp;D</h3>
-          <span class="when">May 2025 – Jun 2026</span>
-          <ul>
-            <li>Acted as hardware R&amp;D owner for custom-built units, running feasibility checks on modular electronic and mechanical building blocks and ensuring manufacturability.</li>
-            <li>Defined complete unit configurations and built accurate BOMs covering electronics, mechanics and fasteners for production release.</li>
-            <li>Released production-ready documentation: mounting instructions, test procedures and customer installation guides.</li>
-            <li>Gave first-line production support on urgent custom orders, resolving issues under time pressure to avoid delays.</li>
-          </ul>
-        </article>
+      <article class="job">
+        <span class="org">Televic Conference, Izegem · TMC Belgium assignment</span>
+        <h3>Customization Engineer, Hardware R&amp;D</h3>
+        <span class="when">May 2025 – Jun 2026</span>
+        <ul>
+          <li>Acted as hardware R&amp;D owner for custom-built units, running feasibility checks on modular electronic and mechanical building blocks and ensuring manufacturability.</li>
+          <li>Defined complete unit configurations and built accurate BOMs covering electronics, mechanics and fasteners for production release.</li>
+          <li>Released production-ready documentation: mounting instructions, test procedures and customer installation guides.</li>
+          <li>Gave first-line production support on urgent custom orders, resolving issues under time pressure to avoid delays.</li>
+        </ul>
+      </article>
 
-        <article class="job">
-          <span class="org">Lynqo Project, Zaventem</span>
-          <h3>Hardware Engineer</h3>
-          <span class="when">Nov 2024 – Jan 2025</span>
-          <ul>
-            <li>Designed an LED lighting system for AI-assisted object detection, optimising brightness distribution inside a detection box.</li>
-            <li>Developed a control circuit with a MOSFET, LDR and ADC that adjusts light intensity to ambient conditions, keeping detection performance consistent.</li>
-          </ul>
-        </article>
+      <article class="job">
+        <span class="org">Lynqo Project, Zaventem</span>
+        <h3>Hardware Engineer</h3>
+        <span class="when">Nov 2024 – Jan 2025</span>
+        <ul>
+          <li>Designed an LED lighting system for AI-assisted object detection, optimising brightness distribution inside a detection box.</li>
+          <li>Developed a control circuit with a MOSFET, LDR and ADC that adjusts light intensity to ambient conditions, keeping detection performance consistent.</li>
+        </ul>
+      </article>
 
-        <article class="job">
-          <span class="org">IMEC, Leuven</span>
-          <h3>Master's Thesis: Magnetic Localization of Ingestible Devices</h3>
-          <span class="when">Sep 2023 – Jun 2024</span>
-          <ul>
-            <li>Developed and optimised a Python position and orientation algorithm for magnetic localization.</li>
-            <li>Validated a new ingestible device prototype with improved localization accuracy.</li>
-          </ul>
-        </article>
+      <article class="job">
+        <span class="org">IMEC, Leuven</span>
+        <h3>Master's Thesis: Magnetic Localization of Ingestible Devices</h3>
+        <span class="when">Sep 2023 – Jun 2024</span>
+        <ul>
+          <li>Developed and optimised a Python position and orientation algorithm for magnetic localization.</li>
+          <li>Validated a new ingestible device prototype with improved localization accuracy.</li>
+        </ul>
+      </article>
 
-        <article class="job">
-          <span class="org">Watt4ever, Beringen</span>
-          <h3>PCB Design Engineer, part-time</h3>
-          <span class="when">Nov 2023 – Dec 2023</span>
-          <ul>
-            <li>Reverse-engineered BMS-related PCBs to understand function and signal flow, and recreated the full schematics in Altium Designer.</li>
-            <li>Redesigned the layout with better documentation, enabling reliable in-house manufacturing and easier future changes.</li>
-          </ul>
-        </article>
+      <article class="job">
+        <span class="org">Watt4ever, Beringen</span>
+        <h3>PCB Design Engineer, part-time</h3>
+        <span class="when">Nov 2023 – Dec 2023</span>
+        <ul>
+          <li>Reverse-engineered BMS-related PCBs to understand function and signal flow, and recreated the full schematics in Altium Designer.</li>
+          <li>Redesigned the layout with better documentation, enabling reliable in-house manufacturing and easier future changes.</li>
+        </ul>
+      </article>
 
-        <article class="job">
-          <span class="org">Formula Electric Belgium, Leuven</span>
-          <h3>Volunteer Electronics Engineer, part-time</h3>
-          <span class="when">Oct 2022 – Nov 2022</span>
-          <ul>
-            <li>Built working knowledge of the SPI and CAN protocols used in automotive electronics.</li>
-            <li>Drew detailed schematics in Altium Designer, which the team used as the base of their PCB design.</li>
-          </ul>
-        </article>
+      <article class="job">
+        <span class="org">Formula Electric Belgium, Leuven</span>
+        <h3>Volunteer Electronics Engineer, part-time</h3>
+        <span class="when">Oct 2022 – Nov 2022</span>
+        <ul>
+          <li>Built working knowledge of the SPI and CAN protocols used in automotive electronics.</li>
+          <li>Drew detailed schematics in Altium Designer, which the team used as the base of their PCB design.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section id="projects" aria-labelledby="proj">
+    <div class="sec-head">
+      <h2 id="proj">Projects</h2>
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="chip" type="button" data-filter="pcb" aria-pressed="false">PCB design</button>
+        <button class="chip" type="button" data-filter="power" aria-pressed="false">Power</button>
+        <button class="chip" type="button" data-filter="research" aria-pressed="false">Research</button>
       </div>
-    </section>
+    </div>
+    <div class="projects" id="project-list">
+      <article class="project" data-tags="pcb">
+        <div class="meta"><span class="kind">PCB · KU Leuven</span><span>Hardware Design</span></div>
+        <h3>Rigid-flex HDMI switch</h3>
+        <p>An HDMI switch on a rigid-flex board, with 100 Ω differential pairs and a defined layer build-up for the high-speed signals.</p>
+        <ul class="stack"><li>Rigid-flex</li><li>100 Ω diff pairs</li><li>Autodesk Eagle</li></ul>
+        <a class="link" href="https://github.com/jnematli/TMD351-Rigid-flex-HDMI-switch">View on GitHub →</a>
+      </article>
+      <article class="project" data-tags="pcb">
+        <div class="meta"><span class="kind">PCB · KU Leuven</span><span>Hardware Design</span></div>
+        <h3>Adaptive cable equalizer</h3>
+        <p>A board for the GS3440 adaptive cable equalizer with 50 Ω and 75 Ω transmission lines, symmetrical outputs, tight decoupling and room for a heat sink.</p>
+        <ul class="stack"><li>Signal integrity</li><li>Impedance control</li><li>Autodesk Eagle</li></ul>
+        <a class="link" href="https://github.com/jnematli/GS3440-Adaptive-cable-equalizer">View on GitHub →</a>
+      </article>
+      <article class="project" data-tags="power pcb">
+        <div class="meta"><span class="kind">Power · KU Leuven</span><span>2022 – 2023</span></div>
+        <h3>Nixie tube supply</h3>
+        <p>A step-up supply that turns a 9 V input into 170 V at up to 10 mA for Nixie tubes, built around the MAX1771 controller. Team project for the Power Electronics course.</p>
+        <ul class="stack"><li>9 V → 170 V</li><li>MAX1771 boost</li><li>Measurements</li></ul>
+        <a class="link" href="https://github.com/jnematli/Nixie-tube-supply">View on GitHub →</a>
+      </article>
+      <article class="project" data-tags="pcb">
+        <div class="meta"><span class="kind">PCB · Self-study</span><span>Altium course</span></div>
+        <h3>SmartMCU STM32 board</h3>
+        <p>A development board for the STM32F103C8T6 microcontroller that breaks out its GPIO pins.</p>
+        <ul class="stack"><li>STM32</li><li>Embedded</li><li>Altium</li></ul>
+        <a class="link" href="https://github.com/jnematli/smartmcu">View on GitHub →</a>
+      </article>
+      <article class="project" data-tags="research">
+        <div class="meta"><span class="kind">Research · IMEC</span><span>2023 – 2024</span></div>
+        <h3>Magnetic localization of ingestible devices</h3>
+        <p>Master's thesis. A Python position and orientation algorithm that tracks an ingestible capsule magnetically, validated on a new prototype with better accuracy.</p>
+        <ul class="stack"><li>Python</li><li>Sensor fusion</li><li>Medical devices</li></ul>
+      </article>
+      <article class="project" data-tags="power">
+        <div class="meta"><span class="kind">Power · Lynqo</span><span>2024 – 2025</span></div>
+        <h3>Adaptive LED lighting for AI detection</h3>
+        <p>LED lighting for an object-detection box. A MOSFET, LDR and ADC loop adjusts brightness to ambient light so the camera sees consistent conditions.</p>
+        <ul class="stack"><li>LED driver</li><li>MOSFET</li><li>Closed loop</li></ul>
+      </article>
+    </div>
+    <p class="empty" id="project-empty" hidden>No projects match this filter.</p>
+  </section>
 
-    <section aria-labelledby="edu">
-      <h2 id="edu">Education</h2>
-      <div class="edu">
-        <div>
-          <h3>Master of Electronics and ICT</h3>
-          <span>KU Leuven · Sep 2022 – Sep 2024 · Intelligent Electronics</span>
+  <section id="education" aria-labelledby="edu">
+    <h2 id="edu">Education</h2>
+    <div class="edu">
+      <div>
+        <h3>Master of Electronics and ICT</h3>
+        <span>KU Leuven · Sep 2022 – Sep 2024 · Intelligent Electronics</span>
+      </div>
+      <div>
+        <h3>Bachelor of Engineering Technology</h3>
+        <span>KU Leuven · Sep 2019 – Jun 2024 · Electronics and ICT</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="sk">
+    <h2 id="sk">Skills</h2>
+    <dl>
+      <div>
+        <dt>Engineering</dt>
+        <dd><ul class="tags">
+          <li>Hardware R&amp;D</li><li>Multi-layer PCB design</li><li>Electronics</li><li>Power electronics</li><li>BOM management</li><li>Testing &amp; validation</li><li>Production support</li><li>Technical documentation</li><li>Lean Six Sigma Yellow Belt</li>
+        </ul></dd>
+      </div>
+      <div>
+        <dt>Tools</dt>
+        <dd><ul class="tags">
+          <li>Altium Designer</li><li>Autodesk Eagle</li><li>MATLAB</li><li>Python</li><li>NI LabVIEW</li><li>SolidWorks</li>
+        </ul></dd>
+      </div>
+      <div>
+        <dt>Languages</dt>
+        <dd><ul class="tags">
+          <li>Azerbaijani</li><li>English</li><li>Russian</li><li>Turkish</li><li>Dutch (A2)</li>
+        </ul></dd>
+      </div>
+    </dl>
+  </section>
+
+  <section id="contact" aria-labelledby="ct">
+    <h2 id="ct">Contact</h2>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Let's talk hardware</h3>
+        <p>For hardware R&amp;D, PCB design or power electronics work, email is the fastest way to reach me.</p>
+        <div class="email-row">
+          <span id="email">javadnematli.work@gmail.com</span>
+          <button class="small-btn" type="button" id="copy-email">Copy</button>
         </div>
-        <div>
-          <h3>Bachelor of Engineering Technology</h3>
-          <span>KU Leuven · Sep 2019 – Jun 2024 · Electronics and ICT</span>
+        <div class="email-row">
+          <a href="https://www.linkedin.com/in/jnematli">LinkedIn</a> · <a href="https://github.com/jnematli">GitHub</a>
         </div>
       </div>
-    </section>
+      <form id="contact-form" novalidate>
+        <label for="cf-name">Your name
+          <input id="cf-name" name="name" type="text" autocomplete="name" required>
+        </label>
+        <label for="cf-subject">Subject
+          <input id="cf-subject" name="subject" type="text" placeholder="Hardware engineer role at …" required>
+        </label>
+        <label for="cf-message">Message
+          <textarea id="cf-message" name="message" required></textarea>
+        </label>
+        <button class="btn solid" type="submit">Open in my email app</button>
+        <p class="form-note" id="form-note">This opens a pre-filled email in your own mail app. Nothing is stored on this site.</p>
+      </form>
+    </div>
+  </section>
+</main>
 
-    <section aria-labelledby="skills">
-      <h2 id="skills">Skills</h2>
-      <dl>
-        <div>
-          <dt>Engineering</dt>
-          <dd><ul class="tags">
-            <li>Hardware R&amp;D</li><li>Multi-layer PCB design</li><li>Electronics</li><li>Power electronics</li><li>BOM management</li><li>Testing &amp; validation</li><li>Production support</li><li>Technical documentation</li><li>Lean Six Sigma Yellow Belt</li>
-          </ul></dd>
-        </div>
-        <div>
-          <dt>Tools</dt>
-          <dd><ul class="tags">
-            <li>Altium Designer</li><li>Autodesk Eagle</li><li>MATLAB</li><li>Python</li><li>NI LabVIEW</li><li>SolidWorks</li>
-          </ul></dd>
-        </div>
-        <div>
-          <dt>Languages</dt>
-          <dd><ul class="tags">
-            <li>Azerbaijani</li><li>English</li><li>Russian</li><li>Turkish</li><li>Dutch (A2)</li>
-          </ul></dd>
-        </div>
-      </dl>
-    </section>
-  </main>
+<footer class="wrap">
+  <span>© <span id="year">2026</span> Javad Nematli</span>
+  <span>Ledegem, Belgium</span>
+</footer>
 
-  <footer>Javad Nematli · Belgium</footer>
-</div>
+<button class="to-top" id="to-top" type="button" aria-label="Back to top">↑</button>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var toastEl = document.getElementById("toast");
+  var toastTimer;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.classList.remove("show"); }, 2200);
+  }
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  /* theme: auto -> light -> dark */
+  var modes = ["auto", "light", "dark"];
+  var labels = { auto: "Auto", light: "Light", dark: "Dark" };
+  var current = root.getAttribute("data-theme") || "auto";
+  var themeLabel = document.getElementById("theme-label");
+  themeLabel.textContent = labels[current];
+  document.getElementById("theme-btn").addEventListener("click", function () {
+    current = modes[(modes.indexOf(current) + 1) % modes.length];
+    if (current === "auto") root.removeAttribute("data-theme"); else root.setAttribute("data-theme", current);
+    themeLabel.textContent = labels[current];
+    try { if (current === "auto") localStorage.removeItem("theme"); else localStorage.setItem("theme", current); } catch (e) {}
+  });
+
+  /* scroll-spy */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".nav a"));
+  var sections = links.map(function (a) { return document.querySelector(a.getAttribute("href")); });
+  function spy() {
+    var y = window.scrollY + window.innerHeight * 0.3;
+    var active = -1;
+    sections.forEach(function (s, i) { if (s && s.offsetTop <= y) active = i; });
+    if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) active = sections.length - 1;
+    links.forEach(function (a, i) {
+      if (i === active) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current");
+    });
+    document.getElementById("to-top").classList.toggle("show", window.scrollY > 600);
+  }
+  window.addEventListener("scroll", spy, { passive: true });
+  spy();
+  document.getElementById("to-top").addEventListener("click", function () { window.scrollTo({ top: 0 }); });
+
+  /* project filters */
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+  var projects = Array.prototype.slice.call(document.querySelectorAll(".project"));
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      var f = chip.getAttribute("data-filter");
+      chips.forEach(function (c) { c.setAttribute("aria-pressed", String(c === chip)); });
+      var shown = 0;
+      projects.forEach(function (p) {
+        var match = f === "all" || p.getAttribute("data-tags").split(" ").indexOf(f) !== -1;
+        p.hidden = !match;
+        if (match) shown++;
+      });
+      document.getElementById("project-empty").hidden = shown > 0;
+    });
+  });
+
+  /* copy email */
+  var email = document.getElementById("email").textContent;
+  document.getElementById("copy-email").addEventListener("click", function () {
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      toast("Email selected. Press Ctrl+C to copy");
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(email).then(function () { toast("Email copied"); }, fallback);
+    } else { fallback(); }
+  });
+
+  /* contact form -> mailto */
+  document.getElementById("contact-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var f = e.target;
+    var missing = ["name", "subject", "message"].filter(function (n) { return !f[n].value.trim(); });
+    if (missing.length) {
+      f[missing[0]].focus();
+      toast("Please fill in your " + missing[0]);
+      return;
+    }
+    var body = f.message.value.trim() + "\n\n— " + f.name.value.trim();
+    window.location.href = "mailto:" + email + "?subject=" + encodeURIComponent(f.subject.value.trim()) + "&body=" + encodeURIComponent(body);
+    document.getElementById("form-note").textContent = "Your mail app should open now. If it doesn't, email " + email + " directly.";
+  });
+})();
+</script>
 </body>
 </html>
